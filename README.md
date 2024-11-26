@@ -5,12 +5,12 @@ Switch to or create the LibraryDB database:
   use LibraryDB
  ``` 
 
-1. ## Create Collections and Insert Documents
+## 1. Create Collections and Insert Documents
 
 ## Books Collection:
 Insert multiple documents:
-bash
 Copy code
+```bash
 db.books.insertMany([
   { _id: 1, title: "1984", author_id: 1, genres: ["Dystopian", "Political Fiction"], published_year: 1949, available: true },
   { _id: 2, title: "To Kill a Mockingbird", author_id: 2, genres: ["Southern Gothic", "Bildungsroman"], published_year: 1960, available: true },
@@ -23,12 +23,13 @@ db.books.insertMany([
   { _id: 9, title: "Crime and Punishment", author_id: 9, genres: ["Philosophical Novel"], published_year: 1866, available: true },
   { _id: 10, title: "The Hobbit", author_id: 10, genres: ["Fantasy"], published_year: 1937, available: true }
 ])
+```
 
 ![Project Screenshot](media/LibraryS1C1.png)
 
 ## Authors Collection:
-bash
 Copy code
+```bash
 db.authors.insertMany([
   { _id: 1, name: "George Orwell", nationality: "British", birth_year: 1903, death_year: 1950 },
   { _id: 2, name: "Harper Lee", nationality: "American", birth_year: 1926, death_year: 2016 },
@@ -41,12 +42,13 @@ db.authors.insertMany([
   { _id: 9, name: "Fyodor Dostoevsky", nationality: "Russian", birth_year: 1821, death_year: 1881 },
   { _id: 10, name: "J.R.R. Tolkien", nationality: "British", birth_year: 1892, death_year: 1973 }
 ])
+ ```
 
 ![Project Screenshot](media/LibraryS1C2.png)
 
 ## Patrons Collection:
-bash
 Copy code
+ ```bash
 db.patrons.insertMany([
   { _id: 1, name: "Alice Johnson", email: "alice@example.com", borrowed_books: [] },
   { _id: 2, name: "Bob Smith", email: "bob@example.com", borrowed_books: [1, 2] },
@@ -59,31 +61,32 @@ db.patrons.insertMany([
   { _id: 9, name: "Ivy Taylor", email: "ivy@example.com", borrowed_books: [] },
   { _id: 10, name: "Jack Anderson", email: "jack@example.com", borrowed_books: [7, 8] }
 ])
+ ```
 
 ![Project Screenshot](media/LibraryS1C3.png)
 
-3. ## CRUD Operations
+## 3. CRUD Operations
 READ
 bash
   Copy code
 
-# Find All Books
+## Find All Books
  ```bash
   db.books.find()
  ```
 ![Project Screenshot](media/LibraryS2-Find.png)
 
-# Find a Specific Book by Title
+## Find a Specific Book by Title
  ```bash
   db.books.find({ title: "To Kill a Mockingbird" })
  ```
 
-# Find All Books by a Specific Author
+## Find All Books by a Specific Author
  ```bash
   db.books.find({ author_id: 5 })
  ```
 
-# Find All Available Books
+## Find All Available Books
   ```bash
   db.books.find({ available: true })
   ```
@@ -91,18 +94,18 @@ bash
 UPDATE
 bash
 Copy code
-# Mark a Book as Borrowed
+## Mark a Book as Borrowed
   ```bash
    db.books.updateOne({ _id: 3 }, { $set: { available: false } })
   ```
    ![Project Screenshot](media/LibraryS1Add.png)
 
-# Add a Genre to a Book
+### Add a Genre to a Book
   ```bash
    db.books.updateOne({ _id: 8 }, { $addToSet: { genres: "Epic Novel" } })
   ```
 
-# Add a Borrowed Book to a Patron's Record
+### Add a Borrowed Book to a Patron's Record
    ```bash
    db.patrons.updateOne({ _id: 5 }, { $push: { borrowed_books: 9 } })
    ```
@@ -111,13 +114,13 @@ DELETE
 bash
 Copy code
 
-# Delete a Book by Title
+### Delete a Book by Title
   ```bash
    db.books.deleteOne({ title: "Brave New World" })
   ``` 
  ![Project Screenshot](media/LibraryS1Delete.png) 
 
-# Delete an Author
+### Delete an Author
   ```bash
    db.authors.deleteOne({ _id: 3 })
   ```
@@ -126,32 +129,32 @@ Copy code
 bash
 Copy code
 
-# Find Books Published After 1950
+### Find Books Published After 1950
  ```bash
    db.books.find({ published_year: { $gt: 1950 } })
  ```
 
-# Find All American Authors
+### Find All American Authors
  ```bash
    db.authors.find({ nationality: { $eq: "American" } })
  ```
 
-# Set All Books to Available
+### Set All Books to Available
   ```bash
    db.books.updateMany({}, { $set: { available: true } })
   ```
 
-# Find All Books That Are Available And Published After 1950
+### Find All Books That Are Available And Published After 1950
   ```bash
    db.books.find({ available: true, published_year: { $gt: 1950 } })
   ```
 
-# Find Authors Whose Names Contain "George"
+### Find Authors Whose Names Contain "George"
  ```bash
    db.authors.find({ name: { $regex: /George/ } })
  ```
 
-# Increment Published Year of 1869 by 1
+### Increment Published Year of 1869 by 1
  ```bash
    db.books.updateOne({ published_year: 1869 }, { $inc: { published_year: 1 } })
  ```
