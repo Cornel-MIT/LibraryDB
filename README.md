@@ -128,37 +128,37 @@ DELETE :
 
  Copy code
 
-### Find Books Published After 1950
+#### Find Books Published After 1950
  ```bash
    db.books.find({ published_year: { $gt: 1950 } })
  ```
 
 
-### Find All American Authors
+#### Find All American Authors
  ```bash
    db.authors.find({ nationality: { $eq: "American" } })
  ```
 
 
-### Set All Books to Available
+#### Set All Books to Available
   ```bash
    db.books.updateMany({}, { $set: { available: true } })
   ```
 
 
-### Find All Books That Are Available And Published After 1950
+#### Find All Books That Are Available And Published After 1950
   ```bash
    db.books.find({ available: true, published_year: { $gt: 1950 } })
   ```
 
 
-### Find Authors Whose Names Contain "George"
+#### Find Authors Whose Names Contain "George"
  ```bash
    db.authors.find({ name: { $regex: /George/ } })
  ```
 
 
-### Increment Published Year of 1869 by 1
+#### Increment Published Year of 1869 by 1
  ```bash
    db.books.updateOne({ published_year: 1869 }, { $inc: { published_year: 1 } })
  ```
