@@ -1,14 +1,14 @@
  ## Create Database LibraryDB
-Switch to or create the LibraryDB database:
+Switch to or create the LibraryDB database :
  Copy code
  ```bash
   use LibraryDB
  ``` 
 
-## 1. Create Collections and Insert Documents
+## 1. Create Collections and Insert Documents :
 
-## Books Collection:
-Insert multiple documents:
+### A. Books Collection:
+Insert multiple documents :
 Copy code
 ```bash
 db.books.insertMany([
@@ -27,7 +27,7 @@ db.books.insertMany([
 
 ![Project Screenshot](media/LibraryS1C1.png)
 
-## Authors Collection:
+### B. Authors Collection :
 Copy code
 ```bash
 db.authors.insertMany([
@@ -46,7 +46,7 @@ db.authors.insertMany([
 
 ![Project Screenshot](media/LibraryS1C2.png)
 
-## Patrons Collection:
+### C. Patrons Collection :
 Copy code
  ```bash
 db.patrons.insertMany([
@@ -65,40 +65,40 @@ db.patrons.insertMany([
 
 ![Project Screenshot](media/LibraryS1C3.png)
 
-## 3. CRUD Operations
-READ
-bash
+## 2. CRUD Operations
+READ All :
   Copy code
 
-## Find All Books
+### Find All Books
  ```bash
   db.books.find()
  ```
 ![Project Screenshot](media/LibraryS2-Find.png)
 
-## Find a Specific Book by Title
+
+### Find a Specific Book by Title
  ```bash
   db.books.find({ title: "To Kill a Mockingbird" })
  ```
 
-## Find All Books by a Specific Author
+### Find All Books by a Specific Author
  ```bash
   db.books.find({ author_id: 5 })
  ```
 
-## Find All Available Books
+### Find All Available Books
   ```bash
   db.books.find({ available: true })
   ```
 
-UPDATE
-bash
-Copy code
-## Mark a Book as Borrowed
+UPDATE :
+ Copy code
+### Mark a Book as Borrowed
   ```bash
    db.books.updateOne({ _id: 3 }, { $set: { available: false } })
   ```
    ![Project Screenshot](media/LibraryS1Add.png)
+
 
 ### Add a Genre to a Book
   ```bash
@@ -110,9 +110,8 @@ Copy code
    db.patrons.updateOne({ _id: 5 }, { $push: { borrowed_books: 9 } })
    ```
 
-DELETE
-bash
-Copy code
+DELETE :
+ Copy code
 
 ### Delete a Book by Title
   ```bash
@@ -125,34 +124,39 @@ Copy code
    db.authors.deleteOne({ _id: 3 })
   ```
 
-4. ## Advanced Queries with Operators
-bash
-Copy code
+## 3. Advanced Queries with Operators
+
+ Copy code
 
 ### Find Books Published After 1950
  ```bash
    db.books.find({ published_year: { $gt: 1950 } })
  ```
 
+
 ### Find All American Authors
  ```bash
    db.authors.find({ nationality: { $eq: "American" } })
  ```
+
 
 ### Set All Books to Available
   ```bash
    db.books.updateMany({}, { $set: { available: true } })
   ```
 
+
 ### Find All Books That Are Available And Published After 1950
   ```bash
    db.books.find({ available: true, published_year: { $gt: 1950 } })
   ```
 
+
 ### Find Authors Whose Names Contain "George"
  ```bash
    db.authors.find({ name: { $regex: /George/ } })
  ```
+
 
 ### Increment Published Year of 1869 by 1
  ```bash
